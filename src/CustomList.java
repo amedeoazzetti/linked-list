@@ -11,4 +11,21 @@ public class CustomList {
     public CustomList(Node newHead){
         this.head = newHead;
     }
+
+    public void addLast(int value){
+        Node newNode = new Node(value);
+
+        // Controllo se la lista è vuota, in tal caso l'head è il nuovo nodo
+        if(head == null){
+            head = newNode;
+        }
+
+        Node current = head;
+        while(current.getNext() != null){
+            current = current.getNext();
+        }
+        current.setNext(newNode);
+
+
+    }
 }
