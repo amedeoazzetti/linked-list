@@ -1,9 +1,12 @@
+
 public class Node {
+
     // stored value
     private int value;
 
     // reference to the next node in the structure  
     private Node next;
+
     public Node(int newValue) {
 
         this.value = newValue;
@@ -11,40 +14,47 @@ public class Node {
 
     }
 
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 
-    public Node getNext(){
+    public Node getNext() {
         return next;
     }
 
-    public void setValue(int value){
+    public void setValue(int value) {
         this.value = value;
     }
 
-    public void setNext(Node next){
+    public void setNext(Node next) {
         this.next = next;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "{" + value + "}";
     }
-    
+
     // I can specify how the equals() method works
     @Override
-    public boolean equals(Object obj){
-        if(this == obj) return true;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
 
-        if(obj == null) return false;
+        if (obj == null) {
+            return false;
+        }
 
-        if(getClass() != obj.getClass()) return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
 
-        Node node = (Node)obj;
+        Node node = (Node) obj;
 
         return this.value == node.getValue();
 
-
     }
+
+   
 }
