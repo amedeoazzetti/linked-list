@@ -12,6 +12,10 @@ public class CustomList {
         this.head = newHead;
     }
 
+    public boolean isEmpty(){
+        return head == null;
+    }
+
     public void addLast(int value){
         Node newNode = new Node(value);
 
