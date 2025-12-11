@@ -18,30 +18,6 @@ public class CustomList {
         return head == null;
     }
 
-    /**
-     * aggiunge un nuovo node alla lista
-     *
-     * @param valore valore che vogliamo aggiungere alla lista
-     */
-    public void addLast(int valore) {
-        Node newNode = new Node(valore);
-
-        // Controllo se la lista è vuota, in tal caso l'head è il nuovo nodo
-        if (head == null) {
-            head = newNode;
-        }
-
-        Node current = head;
-
-        while (current.getNext() != null) {
-            System.out.println(current.getValue()+ " ");
-            current = current.getNext();
-
-            current.setNext(newNode);
-
-        }
-    }
-
     public void append(Node newNode){
 
         // se la lista e' vuota settiamo la nuova head
@@ -51,10 +27,32 @@ public class CustomList {
 
         }
         Node cursor = head;
-        if(cursor.getNext() == null){
-            cursor.setNext(newNode);
+        while(cursor.getNext() != null){
+            cursor = cursor.getNext();
         }
+        cursor.setNext(newNode);
     }
+
+    private void appendRec(Node cursor, Node newNode) {
+        // exit clause
+        if (cursor.getNext() == null) {
+            cursor.setNext(newNode);
+            return;
+        }
+
+        // recursive call
+        appendRec(cursor.getNext(), newNode);
+    }
+    
+    // wrapper version
+    public void appendRec(Node newNode) {
+        if (isEmpty()) {
+            this.head = newNode;
+            return;
+        }
+        appendRec(head, newNode);
+    }
+
 
     // versione ricursiva
     public void printRec(Node cursor) {
@@ -71,8 +69,21 @@ public class CustomList {
 
     // wrapper version
     public void printRec() {
-        System.out.println("[");
+        System.out.print("[ ");
         printRec(head);
+        System.out.println("]");
+    }
+
+    // versione iterativa
+    public void printIter() {
+        System.out.print("[ ");
+        Node cursor = head;
+        
+        while (cursor != null) {
+            System.out.print(cursor.getValue() + " ");
+            cursor = cursor.getNext();
+        }
+        
         System.out.println("]");
     }
 }
