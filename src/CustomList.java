@@ -16,20 +16,25 @@ public class CustomList {
         return head == null;
     }
 
-    public void addLast(int value){
-        Node newNode = new Node(value);
+    /**
+     * aggiunge un nuovo node alla lista
+     * @param valore valore che vogliamo aggiungere alla lista
+     */
+    public void addLast(int valore){
+        Node newNode = new Node(valore);
 
         // Controllo se la lista è vuota, in tal caso l'head è il nuovo nodo
         if(head == null){
             head = newNode;
+            
         }
 
         Node current = head;
-        while(current.getNext() != null){
+        while(current != null){
+            System.out.print(current.getValue()+" ");
             current = current.getNext();
         }
-        current.setNext(newNode);
-
-
+        
     }
+
 }
