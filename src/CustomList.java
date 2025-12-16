@@ -114,4 +114,36 @@ public class CustomList {
         newNode.setNext(cursor.getNext());
         cursor.setNext(newNode);
     }
+
+    public void remove(int index) {
+        if (isEmpty() || index < 0) {
+            return;
+        }
+
+        // Remove head
+        if (index == 0) {
+            head = head.getNext();
+            return;
+        }
+
+        // Find the node before the one to remove
+        Node cursor = head;
+        int currentPos = 0;
+
+        while (cursor != null && currentPos < index - 1) {
+            cursor = cursor.getNext();
+            currentPos++;
+        }
+
+        // If position is out of bounds or next node is null, do nothing
+        if (cursor == null || cursor.getNext() == null) {
+            return;
+        }
+
+        // Remove the node
+        Node nodeToRemove = cursor.getNext();
+        Node nodeAfterRemoval = nodeToRemove.getNext();
+        cursor.setNext(nodeAfterRemoval);
+    }
+    
 }
