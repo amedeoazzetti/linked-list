@@ -86,4 +86,32 @@ public class CustomList {
         
         System.out.println("]");
     }
+
+    public void insertAt(int position, Node newNode) {
+        // Insert at position 0 (new head)
+        if (position == 0) {
+            newNode.setNext(head);
+            head = newNode;
+            return;
+        }
+
+        // Find the node before the insertion point
+        Node cursor = head;
+        int currentPos = 0;
+
+        while (cursor != null && currentPos < position - 1) {
+            cursor = cursor.getNext();
+            currentPos++;
+        }
+
+        // If position is out of bounds, append at the end
+        if (cursor == null) {
+            append(newNode);
+            return;
+        }
+
+        // Insert the node
+        newNode.setNext(cursor.getNext());
+        cursor.setNext(newNode);
+    }
 }
