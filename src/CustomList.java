@@ -87,6 +87,11 @@ public class CustomList {
         System.out.println("]");
     }
 
+    /**
+     * Metodo per inserire un nodo in una determinata posizione
+     * @param position posizione in cui voglio inserire il nodo
+     * @param newNode nodo nuovo che vogliamo inserire
+     */
     public void insertAt(int position, Node newNode) {
         // Insert at position 0 (new head)
         if (position == 0) {
@@ -115,6 +120,10 @@ public class CustomList {
         cursor.setNext(newNode);
     }
 
+    /**
+     * Metodo per rimuovore il nodo nelle posizione data
+     * @param index posizione in cui rimuovere nodo
+     */
     public void remove(int index) {
         if (isEmpty() || index < 0) {
             return;
