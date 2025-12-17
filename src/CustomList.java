@@ -154,5 +154,59 @@ public class CustomList {
         Node nodeAfterRemoval = nodeToRemove.getNext();
         cursor.setNext(nodeAfterRemoval);
     }
-    
+    public boolean remove (Node n){
+        if(n == null) return false;
+        int index = indexOf(n);
+        if(index<0) return false;
+        remove(index);
+        return true;
+    }
+
+    public int indexOf(Node n){
+        Node cursor = head;
+        int index =0;
+        while(cursor!=null){
+            if(cursor.equals(n)){
+                cursor = cursor.getNext();
+                index++;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Riscivere un nodo data la sua posizione
+     * @param index posizione del vecchio nodo
+     * @param n nuovo nodo da settare
+     */
+    public void set(int index, Node n){
+        Node cursor = head;
+        while(cursor!=null){
+            if (indexOf(cursor)==index) {
+                cursor = n;
+            }
+            cursor = cursor.getNext();
+        }
+    }
+
+    /**
+     * Controlla se il nodo e' contenuto della lista
+     * @param n nodo da trovare
+     * @return true se il nodo e' presente senno' falso
+     */
+    public boolean contains(Node n){
+        if (isEmpty()) {
+            return false;
+        }
+        
+        Node cursor = head;
+        while (cursor != null) {
+            if (cursor == n) {
+                return true;
+            }
+            cursor = cursor.getNext();
+        }
+        return false;
+    }
+
 }
