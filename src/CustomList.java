@@ -1,4 +1,3 @@
-
 public class CustomList {
 
     // startin node of the structure
