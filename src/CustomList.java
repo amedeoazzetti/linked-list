@@ -18,16 +18,16 @@ public class CustomList {
         return head == null;
     }
 
-    public void append(Node newNode){
+    public void append(Node newNode) {
 
         // se la lista e' vuota settiamo la nuova head
-        if(isEmpty()){
+        if (isEmpty()) {
             this.head = newNode;
             return;
 
         }
         Node cursor = head;
-        while(cursor.getNext() != null){
+        while (cursor.getNext() != null) {
             cursor = cursor.getNext();
         }
         cursor.setNext(newNode);
@@ -43,7 +43,7 @@ public class CustomList {
         // recursive call
         appendRec(cursor.getNext(), newNode);
     }
-    
+
     // wrapper version
     public void appendRec(Node newNode) {
         if (isEmpty()) {
@@ -52,7 +52,6 @@ public class CustomList {
         }
         appendRec(head, newNode);
     }
-
 
     // versione ricursiva
     public void printRec(Node cursor) {
@@ -78,17 +77,18 @@ public class CustomList {
     public void printIter() {
         System.out.print("[ ");
         Node cursor = head;
-        
+
         while (cursor != null) {
             System.out.print(cursor.getValue() + " ");
             cursor = cursor.getNext();
         }
-        
+
         System.out.println("]");
     }
 
     /**
      * Metodo per inserire un nodo in una determinata posizione
+     *
      * @param position posizione in cui voglio inserire il nodo
      * @param newNode nodo nuovo che vogliamo inserire
      */
@@ -122,6 +122,7 @@ public class CustomList {
 
     /**
      * Metodo per rimuovore il nodo nelle posizione data
+     *
      * @param index posizione in cui rimuovere nodo
      */
     public void remove(int index) {
@@ -154,19 +155,24 @@ public class CustomList {
         Node nodeAfterRemoval = nodeToRemove.getNext();
         cursor.setNext(nodeAfterRemoval);
     }
-    public boolean remove (Node n){
-        if(n == null) return false;
+
+    public boolean remove(Node n) {
+        if (n == null) {
+            return false;
+        }
         int index = indexOf(n);
-        if(index<0) return false;
+        if (index < 0) {
+            return false;
+        }
         remove(index);
         return true;
     }
 
-    public int indexOf(Node n){
+    public int indexOf(Node n) {
         Node cursor = head;
-        int index =0;
-        while(cursor!=null){
-            if(cursor.equals(n)){
+        int index = 0;
+        while (cursor != null) {
+            if (cursor.equals(n)) {
                 cursor = cursor.getNext();
                 index++;
             }
@@ -175,14 +181,38 @@ public class CustomList {
     }
 
     /**
+     * Restituisce la dimensione della lista
+     * @return numero di nodi nella lista
+     */
+    public int size() {
+        int count = 0;
+        Node cursor = head;
+
+        while (cursor != null) {
+            count++;
+            cursor = cursor.getNext();
+        }
+
+        return count;
+    }
+
+    /**
      * Riscivere un nodo data la sua posizione
+     *
      * @param index posizione del vecchio nodo
      * @param n nuovo nodo da settare
      */
-    public void set(int index, Node n){
+    public void set(int index, Node n) throws IndexOutOfBoundsException {
+
+        if(index < 0 || index > size()){
+            throw new IndexOutOfBoundsException("Invalid Index");
+        }
+        
+        if(n == null)return;
+
         Node cursor = head;
-        while(cursor!=null){
-            if (indexOf(cursor)==index) {
+        while (cursor != null) {
+            if (indexOf(cursor) == index) {
                 cursor = n;
             }
             cursor = cursor.getNext();
@@ -191,22 +221,38 @@ public class CustomList {
 
     /**
      * Controlla se il nodo e' contenuto della lista
+     *
      * @param n nodo da trovare
      * @return true se il nodo e' presente senno' falso
      */
-    public boolean contains(Node n){
+    public boolean contains(Node n) {
         if (isEmpty()) {
             return false;
         }
-        
+
         Node cursor = head;
         while (cursor != null) {
-            if (cursor == n) {
+            if (cursor.equals(n)) {
                 return true;
             }
             cursor = cursor.getNext();
         }
         return false;
+    }
+
+    public boolean containsRec(Node n){
+
+        return containsRec(head, n); 
+    }
+
+    private boolean containsRec(Node cursor, Node n){
+
+        // exit clause
+        if(cursor == null) return false;
+        if(cursor.equals(n)) return true;
+
+        // recursive call
+        return containsRec(cursor.getNext(), n); 
     }
 
 }
