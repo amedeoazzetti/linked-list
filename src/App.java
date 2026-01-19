@@ -17,5 +17,7 @@ public class App {
         // Stampa con metodo iterativo
         System.out.println("Metodo iterativo:");
         list.printIter();
+
+        
     }
 }

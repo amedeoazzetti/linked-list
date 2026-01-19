@@ -44,8 +44,9 @@ public class Stack {
     public void push(Node nowNode){
         Node cursor = top;
         
-        cursor.setNext(nowNode);
-        
+        cursor.setNext(nowNode);   
     }
-    
+
+
+
 }
